@@ -1,1 +1,1 @@
-[https://chainza-test.vercel.app/](Chainza Test App)
+[Chainza Test App](https://chainza-test.vercel.app/)
