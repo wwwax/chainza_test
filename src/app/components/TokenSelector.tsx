@@ -7,8 +7,8 @@ const StyledWrapper = styled.div`
   background-color: #f5f6fc;
   border-radius: 16px;
 
-  &:last-child {
-    margin-top: 4px;
+  &:nth-child(2) {
+    margin-bottom: 4px;
   }
 `;
 
@@ -26,21 +26,25 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledSelect = styled.select`
-  border: none;
-  background: transparent;
-  outline: none;
+const StyledTokenSelect = styled.div`
+  padding: 8px;
+  background: #f31d92;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
 `;
 
-const Token: React.FC = () => {
+interface Props {
+  openModal: () => void;
+}
+
+const TokenSelector: React.FC<Props> = ({ openModal }) => {
   return (
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
-      <StyledSelect>
-        <option value="">Select token</option>
-      </StyledSelect>
+      <StyledTokenSelect onClick={openModal}>Select Token</StyledTokenSelect>
     </StyledWrapper>
   );
 };
 
-export default Token;
+export default TokenSelector;

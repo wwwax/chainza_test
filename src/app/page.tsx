@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import { useState } from 'react';
-import Token from './components/Token';
+import TokenSelector from './components/TokenSelector';
 import Modal from './components/Modal';
 
 import './globals.css';
@@ -26,6 +26,7 @@ const StyledContainerInner = styled.div`
 
 const StyledTitle = styled.div`
   padding: 0 8px 16px;
+  font-weight: bold;
 `;
 
 const Home: React.FC = () => {
@@ -43,9 +44,8 @@ const Home: React.FC = () => {
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
-        <Token />
-        <Token />
-        <button onClick={openModal}>openModal</button>
+        <TokenSelector openModal={openModal} />
+        <TokenSelector openModal={openModal} />
         {isModalOpen && <Modal closeModal={closeModal} />}
       </StyledContainerInner>
     </StyledContainer>
