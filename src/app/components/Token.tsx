@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
   padding: 24px 8px;
@@ -10,7 +10,7 @@ const StyledWrapper = styled.div`
   &:last-child {
     margin-top: 4px;
   }
-`
+`;
 
 const StyledInput = styled.input`
   padding: 4px;
@@ -24,15 +24,15 @@ const StyledInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
-`
+`;
 
 const StyledSelect = styled.select`
   border: none;
   background: transparent;
   outline: none;
-`
+`;
 
-const Token = () => {
+const Token: React.FC = () => {
   return (
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
@@ -40,7 +40,7 @@ const Token = () => {
         <option value="">Select token</option>
       </StyledSelect>
     </StyledWrapper>
-  )
-}
+  );
+};
 
-export default Token
+export default Token;

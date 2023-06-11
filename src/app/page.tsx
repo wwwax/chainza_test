@@ -1,7 +1,11 @@
-'use client'
+'use client';
 
-import styled from 'styled-components'
-import Token from './components/Token'
+import styled from 'styled-components';
+import { useState } from 'react';
+import Token from './components/Token';
+import Modal from './components/Modal';
+
+import './globals.css';
 
 const StyledContainer = styled.div`
   min-height: 100vh;
@@ -9,7 +13,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff5fb;
-`
+`;
 
 const StyledContainerInner = styled.div`
   width: 40%;
@@ -18,20 +22,34 @@ const StyledContainerInner = styled.div`
   background-color: #ffffff;
   border: 1px solid lightgrey;
   border-radius: 16px;
-`
+`;
 
 const StyledTitle = styled.div`
-  padding: 0 8px 16px; // todo: add global styles
-`
+  padding: 0 8px 16px;
+`;
 
-export default function Home() {
+const Home: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
         <Token />
         <Token />
+        <button onClick={openModal}>openModal</button>
+        {isModalOpen && <Modal closeModal={closeModal} />}
       </StyledContainerInner>
     </StyledContainer>
-  )
-}
+  );
+};
+
+export default Home;
