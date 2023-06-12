@@ -28,8 +28,16 @@ export const modal = createSlice({
         },
       };
     },
+    closeModal: (state, action: PayloadAction<string>) => {
+      return {
+        value: {
+          isOpen: false,
+          background: action.payload,
+        },
+      };
+    },
   },
 });
 
-export const { openModal } = modal.actions;
+export const { openModal, closeModal } = modal.actions;
 export default modal.reducer;

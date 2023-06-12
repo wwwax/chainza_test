@@ -43,10 +43,16 @@ const StyledTokenSelect = styled.div`
 const TokenSelector: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const handleOpenModal = () => {
+    dispatch(openModal('pink'));
+  };
+
   return (
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
-      <StyledTokenSelect onClick={openModal}>Select Token</StyledTokenSelect>
+      <StyledTokenSelect onClick={handleOpenModal}>
+        Select Token
+      </StyledTokenSelect>
     </StyledWrapper>
   );
 };

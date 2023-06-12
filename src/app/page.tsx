@@ -1,9 +1,11 @@
 'use client';
 
 import styled from 'styled-components';
-import { useState } from 'react';
+
 import TokenSelector from './components/TokenSelector';
 import Modal from './components/Modal';
+
+import { useAppSelector } from '@/redux/store';
 
 import './globals.css';
 
@@ -30,13 +32,17 @@ const StyledTitle = styled.div`
 `;
 
 const Home: React.FC = () => {
+  const isModalOpen = useAppSelector(
+    (state) => state.modalReducer.value.isOpen
+  );
+
   return (
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
         <TokenSelector />
         <TokenSelector />
-        <Modal />
+        {isModalOpen && <Modal />}
       </StyledContainerInner>
     </StyledContainer>
   );
