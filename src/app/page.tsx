@@ -30,23 +30,13 @@ const StyledTitle = styled.div`
 `;
 
 const Home: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
-        <TokenSelector openModal={openModal} />
-        <TokenSelector openModal={openModal} />
-        {isModalOpen && <Modal closeModal={closeModal} />}
+        <TokenSelector />
+        <TokenSelector />
+        <Modal />
       </StyledContainerInner>
     </StyledContainer>
   );

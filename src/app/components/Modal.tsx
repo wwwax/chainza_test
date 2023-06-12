@@ -35,17 +35,13 @@ const StyledCloseButton = styled.button`
   cursor: pointer;
 `;
 
-interface Props {
-  closeModal: () => void;
-}
-
-const Modal: React.FC<Props> = ({ closeModal }) => {
+const Modal: React.FC = () => {
   return (
     <StyledModalBackdrop>
       <StyledModalContent>
         <StyledModalHeader>
           <h1>Select a token</h1>
-          <StyledCloseButton onClick={closeModal}>
+          <StyledCloseButton onClick={() => {}}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
