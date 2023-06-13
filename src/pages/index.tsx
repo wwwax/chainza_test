@@ -2,12 +2,10 @@
 
 import styled from 'styled-components';
 
-import TokenSelector from './components/TokenSelector';
-import Modal from './components/Modal';
+import TokenSelector from '../components/TokenSelector';
+import Modal from '../components/Modal';
 
 import { useAppSelector } from '@/redux/store';
-
-import './globals.css';
 
 const StyledContainer = styled.div`
   min-height: 100vh;
