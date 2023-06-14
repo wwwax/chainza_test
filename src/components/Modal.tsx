@@ -45,7 +45,7 @@ const Modal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleCloseModal = () => {
-    dispatch(closeModal('green'));
+    dispatch(closeModal());
   };
 
   return (

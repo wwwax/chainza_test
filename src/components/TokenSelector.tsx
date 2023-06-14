@@ -45,7 +45,7 @@ const TokenSelector: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleOpenModal = () => {
-    dispatch(openModal('pink'));
+    dispatch(openModal());
   };
 
   return (

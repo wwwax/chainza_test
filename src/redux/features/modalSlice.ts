@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 type InitialState = {
   value: ModalState;
@@ -6,7 +6,6 @@ type InitialState = {
 
 type ModalState = {
   isOpen: boolean;
-  background: string;
 };
 
 const initialState = {
@@ -20,19 +19,17 @@ export const modal = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action: PayloadAction<string>) => {
+    openModal: () => {
       return {
         value: {
           isOpen: true,
-          background: action.payload,
         },
       };
     },
-    closeModal: (state, action: PayloadAction<string>) => {
+    closeModal: () => {
       return {
         value: {
           isOpen: false,
-          background: action.payload,
         },
       };
     },
