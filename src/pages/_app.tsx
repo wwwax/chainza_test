@@ -1,4 +1,4 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -8,9 +8,9 @@ import GlobalStyle from '@/components/GlobalStyle';
 
 import { store } from '@/redux/store';
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => {
-  const [queryClient] = useState(() => new QueryClient());
+const queryClient = new QueryClient();
 
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>

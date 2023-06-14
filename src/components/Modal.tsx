@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -44,9 +44,9 @@ const StyledCloseButton = styled.button`
 const Modal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     dispatch(closeModal());
-  };
+  }, [dispatch]);
 
   return (
     <StyledModalBackdrop>

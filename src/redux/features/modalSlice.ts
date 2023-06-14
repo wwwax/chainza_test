@@ -11,7 +11,6 @@ type ModalState = {
 const initialState = {
   value: {
     isOpen: false,
-    background: 'orange',
   } as ModalState,
 } as InitialState;
 

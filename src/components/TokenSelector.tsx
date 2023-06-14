@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -44,9 +44,9 @@ const StyledTokenSelect = styled.div`
 const TokenSelector: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     dispatch(openModal());
-  };
+  }, [dispatch]);
 
   return (
     <StyledWrapper>
