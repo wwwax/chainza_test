@@ -1,5 +1,11 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
 import TokenList from './TokenList';
+
+import { AppDispatch } from '@/redux/store';
+import { closeModal } from '@/redux/features/modalSlice';
 
 const StyledModalBackdrop = styled.div`
   min-height: 100vh;
@@ -35,17 +41,19 @@ const StyledCloseButton = styled.button`
   cursor: pointer;
 `;
 
-interface Props {
-  closeModal: () => void;
-}
+const Modal: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
-const Modal: React.FC<Props> = ({ closeModal }) => {
+  const handleCloseModal = () => {
+    dispatch(closeModal());
+  };
+
   return (
     <StyledModalBackdrop>
       <StyledModalContent>
         <StyledModalHeader>
           <h1>Select a token</h1>
-          <StyledCloseButton onClick={closeModal}>
+          <StyledCloseButton onClick={handleCloseModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

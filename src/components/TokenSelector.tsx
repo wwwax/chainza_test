@@ -1,4 +1,11 @@
+'use client';
+
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+
+import { openModal } from '@/redux/features/modalSlice';
+import { AppDispatch } from '@/redux/store';
 
 const StyledWrapper = styled.div`
   padding: 24px 8px;
@@ -34,15 +41,19 @@ const StyledTokenSelect = styled.div`
   cursor: pointer;
 `;
 
-interface Props {
-  openModal: () => void;
-}
+const TokenSelector: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
-const TokenSelector: React.FC<Props> = ({ openModal }) => {
+  const handleOpenModal = () => {
+    dispatch(openModal());
+  };
+
   return (
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
-      <StyledTokenSelect onClick={openModal}>Select Token</StyledTokenSelect>
+      <StyledTokenSelect onClick={handleOpenModal}>
+        Select Token
+      </StyledTokenSelect>
     </StyledWrapper>
   );
 };
