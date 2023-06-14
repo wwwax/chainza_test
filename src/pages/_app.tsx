@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { store } from '@/redux/store';
+import GlobalStyle from '@/components/GlobalStyle';
 
-import './globals.css';
+import { store } from '@/redux/store';
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   const [queryClient] = useState(() => new QueryClient());
@@ -14,6 +14,7 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />
