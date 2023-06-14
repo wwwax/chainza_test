@@ -1,24 +1,23 @@
-import { JSX } from 'react';
+import { JSX, useState } from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { Provider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { store } from '@/redux/store';
 
 import './globals.css';
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
-  return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>chainza-test-app</title>
-      </Head>
+  const [queryClient] = useState(() => new QueryClient());
 
+  return (
+    <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <Component {...pageProps} />
       </Provider>
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
