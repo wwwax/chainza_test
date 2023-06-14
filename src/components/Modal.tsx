@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
@@ -44,7 +45,7 @@ const Modal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleCloseModal = () => {
-    dispatch(closeModal('green'));
+    dispatch(closeModal());
   };
 
   return (

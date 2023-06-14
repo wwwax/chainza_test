@@ -1,4 +1,6 @@
-const TokenList: React.FC = ({}) => {
+import React from 'react';
+
+const TokenList: React.FC = () => {
   return (
     <ul>
       <li>Token 1</li>
