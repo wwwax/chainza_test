@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { closeModal } from '@/redux/features/modalSlice';
+import { AppDispatch } from '@/redux/store';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -17,6 +21,11 @@ const StyledSymbol = styled.div`
   color: lightgray;
 `;
 
+const StyledImg = styled.img`
+  width: 32px;
+  height: auto;
+`;
+
 type Props = {
   name: string;
   symbol: string;
@@ -24,10 +33,16 @@ type Props = {
 };
 
 const Token = ({ name, symbol, logoURI }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleTokenSelect = () => {
+    dispatch(closeModal());
+  };
+
   return (
-    <StyledWrapper>
+    <StyledWrapper onClick={handleTokenSelect}>
       <StyledImageContainer>
-        <img src={logoURI} alt={name} />
+        <StyledImg src={logoURI} alt={name} />
       </StyledImageContainer>
       <div>
         <div>{name}</div>
