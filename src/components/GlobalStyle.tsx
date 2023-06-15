@@ -6,6 +6,15 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+ul {
+  list-style: none;
+}
 `;
 
 export default GlobalStyle;
