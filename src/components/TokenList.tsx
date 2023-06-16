@@ -2,25 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
+import { TokenData } from '@/model';
+
 import Token from './Token';
 
 const URL =
   'https://api-polygon-tokens.polygon.technology/tokenlists/polygonTokens.tokenlist.json';
-
-interface TokenData {
-  chainId: number;
-  name: string;
-  symbol: string;
-  decimals: number;
-  address: string;
-  logoURI: string;
-  tags: Array<string>;
-  extensions: Extensions;
-}
-
-interface Extensions {
-  rootAddress: string;
-}
 
 const TokenList: React.FC = () => {
   const { data, isLoading } = useQuery('polygon-tokens-list', () => {
@@ -35,11 +22,7 @@ const TokenList: React.FC = () => {
     <ul>
       {data.map((token: TokenData) => (
         <li key={token.name}>
-          <Token
-            name={token.name}
-            symbol={token.symbol}
-            logoURI={token.logoURI}
-          />
+          <Token token={token} />
         </li>
       ))}
     </ul>

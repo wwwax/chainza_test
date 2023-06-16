@@ -2,8 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import { closeModal } from '@/redux/features/modalSlice';
-import { AppDispatch } from '@/redux/store';
+import {
+  closeModal,
+  selectTokenFrom,
+  selectTokenTo,
+} from '@/redux/features/modalSlice';
+import { AppDispatch, useAppSelector } from '@/redux/store';
+import { TokenData } from '@/model';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -27,26 +32,34 @@ const StyledImg = styled.img`
 `;
 
 type Props = {
-  name: string;
-  symbol: string;
-  logoURI: string;
+  token: TokenData;
 };
 
-const Token = ({ name, symbol, logoURI }: Props) => {
+const Token = ({ token }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  const currentTokenDirection = useAppSelector(
+    (state) => state.modalReducer.value.tokenDirection
+  );
+
   const handleTokenSelect = () => {
-    dispatch(closeModal());
+    if (currentTokenDirection === 'from') {
+      dispatch(selectTokenFrom(token));
+      dispatch(closeModal());
+    } else {
+      dispatch(selectTokenTo(token));
+      dispatch(closeModal());
+    }
   };
 
   return (
     <StyledWrapper onClick={handleTokenSelect}>
       <StyledImageContainer>
-        <StyledImg src={logoURI} alt={name} />
+        <StyledImg src={token.logoURI} alt={token.name} />
       </StyledImageContainer>
       <div>
-        <div>{name}</div>
-        <StyledSymbol>{symbol}</StyledSymbol>
+        <div>{token.name}</div>
+        <StyledSymbol>{token.symbol}</StyledSymbol>
       </div>
     </StyledWrapper>
   );

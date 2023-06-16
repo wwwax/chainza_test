@@ -48,12 +48,16 @@ const StyledTokenSelect = styled.div`
   }
 `;
 
-const TokenSelector: React.FC = () => {
+interface Props {
+  direction: string;
+}
+
+const TokenSelector: React.FC<Props> = ({ direction }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleOpenModal = useCallback(() => {
-    dispatch(openModal());
-  }, [dispatch]);
+    dispatch(openModal(direction));
+  }, [dispatch, direction]);
 
   return (
     <StyledWrapper>

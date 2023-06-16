@@ -32,15 +32,15 @@ const StyledTitle = styled.div`
 
 const Home: React.FC = () => {
   const isModalOpen = useAppSelector(
-    (state) => state.modalReducer.value.isOpen
+    (state) => state.modalReducer.value.isModalOpen
   );
 
   return (
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
-        <TokenSelector />
-        <TokenSelector />
+        <TokenSelector direction="from" />
+        <TokenSelector direction="to" />
         {isModalOpen && <Modal />}
       </StyledContainerInner>
     </StyledContainer>
