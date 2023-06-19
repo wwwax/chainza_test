@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { openModal } from '@/redux/features/modalSlice';
-import { AppDispatch } from '@/redux/store';
+import { AppDispatch, useAppSelector } from '@/redux/store';
 
 const StyledWrapper = styled.div`
   padding: 24px 8px;
@@ -48,12 +48,29 @@ const StyledTokenSelect = styled.div`
   }
 `;
 
+const StyledTokenInfo = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 1rem;
+  }
+`;
+
 interface Props {
   direction: string;
 }
 
 const TokenSelector: React.FC<Props> = ({ direction }) => {
   const dispatch = useDispatch<AppDispatch>();
+
+  const tokenFrom = useAppSelector(
+    (state) => state.modalReducer.value.tokenFrom
+  );
+
+  const tokenTo = useAppSelector((state) => state.modalReducer.value.tokenTo);
+
+  const currentToken = direction === 'from' ? tokenFrom : tokenTo;
 
   const handleOpenModal = useCallback(() => {
     dispatch(openModal(direction));
@@ -63,7 +80,12 @@ const TokenSelector: React.FC<Props> = ({ direction }) => {
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
       <StyledTokenSelect onClick={handleOpenModal}>
-        <div>Select Token</div>
+        <StyledTokenInfo>
+          {currentToken.logoURI && (
+            <img src={currentToken.logoURI} alt={currentToken.name} />
+          )}
+          <span>{currentToken.name ? currentToken.name : 'Select token'}</span>
+        </StyledTokenInfo>
         <svg
           width="12"
           height="7"
