@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
   background-color: #f5f6fc;
   border-radius: 16px;
 
-  &:nth-child(2) {
+  &:nth-child(1) {
     margin-bottom: 4px;
   }
 `;

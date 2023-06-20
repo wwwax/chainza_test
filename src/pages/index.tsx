@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import TokenSelector from '../components/TokenSelector';
 import Modal from '../components/Modal';
+import SwapButton from '@/components/SwapButton';
 
 import { useAppSelector } from '@/redux/store';
 
@@ -30,6 +31,10 @@ const StyledTitle = styled.div`
   font-weight: bold;
 `;
 
+const StyledTokenSelectorWrapper = styled.div`
+  position: relative;
+`;
+
 const Home: React.FC = () => {
   const isModalOpen = useAppSelector(
     (state) => state.modalReducer.value.isModalOpen
@@ -39,8 +44,11 @@ const Home: React.FC = () => {
     <StyledContainer>
       <StyledContainerInner>
         <StyledTitle>Swap</StyledTitle>
-        <TokenSelector direction="from" />
-        <TokenSelector direction="to" />
+        <StyledTokenSelectorWrapper>
+          <TokenSelector direction="from" />
+          <TokenSelector direction="to" />
+          <SwapButton />
+        </StyledTokenSelectorWrapper>
         {isModalOpen && <Modal />}
       </StyledContainerInner>
     </StyledContainer>
