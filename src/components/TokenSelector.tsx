@@ -4,7 +4,7 @@ import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { openModal } from '@/redux/features/modalSlice';
+import { openModal, changeInputFromValue } from '@/redux/features/modalSlice';
 import { AppDispatch, useAppSelector } from '@/redux/store';
 
 const StyledWrapper = styled.div`
@@ -72,13 +72,35 @@ const TokenSelector: React.FC<Props> = ({ direction }) => {
 
   const currentToken = direction === 'from' ? tokenFrom : tokenTo;
 
+  const tokenFromValue = useAppSelector(
+    (state) => state.modalReducer.value.tokenFromValue
+  );
+
+  const tokenToValue = useAppSelector(
+    (state) => state.modalReducer.value.tokenToValue
+  );
+
   const handleOpenModal = useCallback(() => {
     dispatch(openModal(direction));
   }, [dispatch, direction]);
 
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (direction === 'from') {
+        dispatch(changeInputFromValue(e.target.value));
+      }
+    },
+    [dispatch, direction]
+  );
+
   return (
     <StyledWrapper>
-      <StyledInput type="number" placeholder="0" />
+      <StyledInput
+        type="number"
+        placeholder="0"
+        onChange={handleInputChange}
+        value={direction === 'from' ? tokenFromValue : tokenToValue}
+      />
       <StyledTokenSelect onClick={handleOpenModal}>
         <StyledTokenInfo>
           {currentToken.logoURI && (

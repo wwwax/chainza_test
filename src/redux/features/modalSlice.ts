@@ -11,6 +11,8 @@ type ModalState = {
   tokenDirection: string;
   tokenFrom: TokenData;
   tokenTo: TokenData;
+  tokenFromValue: number;
+  tokenToValue: number;
 };
 
 const initialState = {
@@ -19,6 +21,8 @@ const initialState = {
     tokenDirection: '',
     tokenFrom: {},
     tokenTo: {},
+    tokenFromValue: 0,
+    tokenToValue: 0,
   } as ModalState,
 } as InitialState;
 
@@ -62,10 +66,23 @@ export const modal = createSlice({
         },
       };
     },
+    changeInputFromValue: (state, { payload }) => {
+      return {
+        value: {
+          ...state.value,
+          tokenFromValue: payload,
+        },
+      };
+    },
   },
 });
 
-export const { openModal, closeModal, selectTokenFrom, selectTokenTo } =
-  modal.actions;
+export const {
+  openModal,
+  closeModal,
+  selectTokenFrom,
+  selectTokenTo,
+  changeInputFromValue,
+} = modal.actions;
 
 export default modal.reducer;
