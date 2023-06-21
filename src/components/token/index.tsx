@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -7,29 +6,16 @@ import {
   selectTokenFrom,
   selectTokenTo,
 } from '@/redux/features/modalSlice';
+
 import { AppDispatch, useAppSelector } from '@/redux/store';
-import { TokenData } from '@/model';
+import { TokenData } from '@/redux/model';
 
-const StyledWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  margin: 0 0 0.5rem 0;
-  cursor: pointer;
-`;
-
-const StyledImageContainer = styled.div`
-  margin-right: 1rem;
-`;
-
-const StyledSymbol = styled.div`
-  color: lightgray;
-`;
-
-const StyledImg = styled.img`
-  width: 32px;
-  height: auto;
-`;
+import {
+  CustomWrapper,
+  CustomImageContainer,
+  CustomImg,
+  CustomSymbol,
+} from './styles';
 
 type Props = {
   token: TokenData;
@@ -53,15 +39,15 @@ const Token = ({ token }: Props) => {
   };
 
   return (
-    <StyledWrapper onClick={handleTokenSelect}>
-      <StyledImageContainer>
-        <StyledImg src={token.logoURI} alt={token.name} />
-      </StyledImageContainer>
+    <CustomWrapper onClick={handleTokenSelect}>
+      <CustomImageContainer>
+        <CustomImg src={token.logoURI} alt={token.name} />
+      </CustomImageContainer>
       <div>
         <div>{token.name}</div>
-        <StyledSymbol>{token.symbol}</StyledSymbol>
+        <CustomSymbol>{token.symbol}</CustomSymbol>
       </div>
-    </StyledWrapper>
+    </CustomWrapper>
   );
 };
 

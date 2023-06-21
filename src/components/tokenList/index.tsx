@@ -2,9 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-import { TokenData } from '@/model';
+import { TokenData } from '@/redux/model';
 
-import Token from './Token';
+import Token from '../token/';
+
+import { CustomListItem } from './styles';
 
 const URL =
   'https://api-polygon-tokens.polygon.technology/tokenlists/polygonTokens.tokenlist.json';
@@ -21,9 +23,9 @@ const TokenList: React.FC = () => {
   return (
     <ul>
       {data.map((token: TokenData) => (
-        <li key={token.name}>
+        <CustomListItem key={token.name}>
           <Token token={token} />
-        </li>
+        </CustomListItem>
       ))}
     </ul>
   );
