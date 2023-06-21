@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { TokenData } from '@/model';
+import { TokenData } from '@/redux/model';
 
 type InitialState = {
   value: ModalState;
