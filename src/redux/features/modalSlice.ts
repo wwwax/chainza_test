@@ -1,16 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { TokenData } from '@/redux/model';
+
 type InitialState = {
   value: ModalState;
 };
 
 type ModalState = {
-  isOpen: boolean;
+  isModalOpen: boolean;
+  tokenDirection: string;
+  tokenFrom: TokenData;
+  tokenTo: TokenData;
+  tokenFromValue: number;
+  tokenToValue: number;
 };
 
 const initialState = {
   value: {
-    isOpen: false,
+    isModalOpen: false,
+    tokenDirection: '',
+    tokenFrom: {},
+    tokenTo: {},
+    tokenFromValue: 0,
+    tokenToValue: 0,
   } as ModalState,
 } as InitialState;
 
@@ -18,22 +30,59 @@ export const modal = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: () => {
+    openModal: (state, { payload }) => {
       return {
         value: {
-          isOpen: true,
+          ...state.value,
+          isModalOpen: true,
+          tokenDirection: payload,
         },
       };
     },
-    closeModal: () => {
+    closeModal: (state) => {
       return {
         value: {
-          isOpen: false,
+          ...state.value,
+          isModalOpen: false,
+          tokenDirection: '',
+        },
+      };
+    },
+    selectTokenFrom: (state, { payload }) => {
+      return {
+        value: {
+          ...state.value,
+          isModalOpen: false,
+          tokenFrom: payload,
+        },
+      };
+    },
+    selectTokenTo: (state, { payload }) => {
+      return {
+        value: {
+          ...state.value,
+          isModalOpen: false,
+          tokenTo: payload,
+        },
+      };
+    },
+    changeInputFromValue: (state, { payload }) => {
+      return {
+        value: {
+          ...state.value,
+          tokenFromValue: payload,
         },
       };
     },
   },
 });
 
-export const { openModal, closeModal } = modal.actions;
+export const {
+  openModal,
+  closeModal,
+  selectTokenFrom,
+  selectTokenTo,
+  changeInputFromValue,
+} = modal.actions;
+
 export default modal.reducer;
