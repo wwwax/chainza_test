@@ -35,10 +35,17 @@ const StyledInput = styled.input`
 
 const StyledTokenSelect = styled.div`
   padding: 8px;
+  display: flex;
+  align-items: center;
   background: #f31d92;
   color: #ffffff;
   border-radius: 8px;
   cursor: pointer;
+
+  & svg {
+    margin-left: 4px;
+    fill: #fff;
+  }
 `;
 
 const TokenSelector: React.FC = () => {
@@ -52,7 +59,16 @@ const TokenSelector: React.FC = () => {
     <StyledWrapper>
       <StyledInput type="number" placeholder="0" />
       <StyledTokenSelect onClick={handleOpenModal}>
-        Select Token
+        <div>Select Token</div>
+        <svg
+          width="12"
+          height="7"
+          viewBox="0 0 12 7"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
+        </svg>
       </StyledTokenSelect>
     </StyledWrapper>
   );

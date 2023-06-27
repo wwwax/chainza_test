@@ -26,7 +26,8 @@ const StyledModalContent = styled.div`
   background-color: #ffffff;
   width: 25%;
   height: 80%;
-  border-radius: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 const StyledModalHeader = styled.div`
@@ -70,6 +71,7 @@ const Modal: React.FC = () => {
             </svg>
           </StyledCloseButton>
         </StyledModalHeader>
+        <hr />
         <TokenList />
       </StyledModalContent>
     </StyledModalBackdrop>
